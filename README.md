@@ -13,7 +13,7 @@ The AlphaFold2 parameters are made available under the terms of the [CC BY 4.0 l
 \
 **You may not use these files except in compliance with the licenses.**
 
-
+<img src="./6nnw.gif"/>
 
 # Setup
 
