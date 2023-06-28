@@ -55,6 +55,7 @@ cd src
 bash AFP.sh
 ```
 
+## Install the genetic search programs
 - We install the genetic search programs from source. This will make the searches faster.
 
 *hh-suite*
