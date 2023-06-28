@@ -66,9 +66,24 @@ make install
 cd ..
 ```
 
-- For the python environment, we recommend to install it with pip as described below.
+- For the python environment, we recommend to install it with pip as described below. You can do this in your virtual environment of choice.
 - Otherwise, you can follow the installation with docker here: https://github.com/deepmind/alphafold/tree/main
-
+```
+pip install -U jaxlib==0.3.24+cuda11.cudnn82 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+pip install jax==0.3.24
+pip install ml-collections==0.1.1
+pip install dm-haiku==0.0.9
+pip install pandas==1.3.5
+pip install biopython==1.81
+pip install chex==0.1.5
+pip install dm-tree==0.1.8
+pip install immutabledict==2.0.0
+pip install numpy==1.21.6
+pip install scipy==1.7.3
+pip install tensorflow-cpu==2.12.0
+pip install tensorflow==2.11.0
+pip install optax==0.1.4
+```
 
 ## Download all databases for AlphaFold
 - If you have already installed AlphaFold, you don't need to do this. Then you can simply
