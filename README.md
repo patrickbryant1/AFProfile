@@ -26,11 +26,54 @@ mv params_model_1.npz data/params
 rm *.npz
 rm alphafold_params_2022-03-02.tar
 ```
+
+## Install the AlphaFold requirements
+- We install the genetic search programs from source. This will make the searches faster.
+*hh-suite*
+```
+cd src
+git clone https://github.com/soedinglab/hh-suite.git
+mkdir -p hh-suite/build && cd hh-suite/build
+cmake -DCMAKE_INSTALL_PREFIX=. ..
+make -j 4 && make install
+cd ..
+```
+
+*hmmer*
+```
+cd src
+wget http://eddylab.org/software/hmmer/hmmer.tar.gz
+tar -xvzf hmmer.tar.gz
+rm hmmer.tar.gz
+cd hmmer-3.3.2
+./configure
+make
+cd ..
+```
+
+*kalign*
+```
+wget https://github.com/TimoLassmann/kalign/archive/refs/tags/v3.3.2.tar.gz
+tar -zxvf v3.3.2.tar.gz
+rm v3.3.2.tar.gz
+cd kalign-3.3.2/
+./autogen.sh
+bash configure
+make
+make check
+make install
+cd ..
+```
+
+- For the python environment, we recommend to install it with pip as described below.
+- Otherwise, you can follow the installation with docker here: https://github.com/deepmind/alphafold/tree/main
+
+
 ## Download all databases for AlphaFold
 - If you have already installed AlphaFold, you don't need to do this. Then you can simply
 provide the paths for the databases in the runscript.
 
-*Small BFD*
+*Small BFD: 17 GB*
 ```
 wget https://storage.googleapis.com/alphafold-databases/reduced_dbs/bfd-first_non_consensus_sequences.fasta.gz
 gunzip bfd-first_non_consensus_sequences.fasta.gz
@@ -39,24 +82,16 @@ mv bfd-first_non_consensus_sequences.fasta data/small_bfd
 rm bfd-first_non_consensus_sequences.fasta.gz
 ```
 
-*UNIREF90*
+*UNIREF90: 67 GB*
 ```
 wget https://ftp.ebi.ac.uk/pub/databases/uniprot/uniref/uniref90/uniref90.fasta.gz
 gunzip uniref90.fasta.gz
 mkdir data/uniref90
 mv uniref90.fasta data/uniref90/
 rm uniref90.fasta.gz
-
-```
-*UNIREF30*
-```
-wget https://storage.googleapis.com/alphafold-databases/v2.3/UniRef30_2021_03.tar.gz
-tar -xvzf UniRef30_2021_03.tar.gz
-mkdir data/uniref30
-mvUniRef30_2021_03* data/uniref30/
 ```
 
-*UNIPROT*
+*UNIPROT: 105 GB*
 ```
 wget https://ftp.ebi.ac.uk/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_trembl.fasta.gz
 wget https://ftp.ebi.ac.uk/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz
@@ -69,9 +104,36 @@ rm *.gz
 rm uniprot_sprot.fasta
 ```
 
-MGNIFY=$DATADIR/mgnify/mgy_clusters_2022_05.fa
-PDB70=$DATADIR/pdb70_from_mmcif_220313
-PDBSEQRES=$DATADIR/pdb_seqres/pdb_seqres.txt
-MMCIFDIR=$DATADIR/pdb_mmcif/
+- The following template databases are not used for the predictions, but needed due to the feature processing.
 
-## Install the
+*PDB SEQRES: 0.2 GB*
+```
+wget https://ftp.wwpdb.org/pub/pdb/derived_data/pdb_seqres.txt
+mkdir pdb_seqres
+mv pdb_seqres.txt  pdb_seqres/
+```
+
+*MGNIFY: 120 GB*
+```
+wget https://storage.googleapis.com/alphafold-databases/v2.3/mgy_clusters_2022_05.fa.gz
+gunzip mgy_clusters_2022_05.fa.gz
+mkdir mgnify
+mv mgy_clusters_2022_05.fa.gz mgnify/
+rm mgy_clusters_2022_05.fa.gz
+```
+
+*MMCIF: 238 GB*
+- This may take a while...
+```
+mkdir -p data/pdb_mmcif/raw
+mkdir data/pdb_mmcif/mmcif_files
+rsync --recursive --links --perms --times --compress --info=progress2 --delete --port=33444 rsync.rcsb.org::ftp_data/structures/divided/mmCIF/ data/pdb_mmcif/raw
+
+find data/pdb_mmcif/raw -type f -iname "*.gz" -exec gunzip
+find data/pdb_mmcif/raw -type d -empty -delete  
+for subdir in data/pdb_mmcif/raw/*
+do
+  mv "${subdir}/"*.cif data/pdb_mmcif/mmcif_files/
+done
+find data/pdb_mmcif/raw -type d -empty -delete
+```

@@ -16,12 +16,12 @@ FASTA_PATHS=$FASTA_DIR/$ID'.fasta'
 ls $FASTA_PATHS
 OUTDIR=$3
 #Genetic search
-JACKHMMER=$4
-HHBLITS=$5
-HHSEARCH=$6
-HMMSEARCH=$7
-HMMBUILD=$8
-KALIGN=$9
+JACKHMMER=./hmmer-3.3.2/src/jackhmmer
+HHBLITS=./hh-suite/build/bin/hhblits
+HHSEARCH=./hh-suite/build/bin/hhsearch
+HMMSEARCH=./hmmer-3.3.2/src/hmmsearch
+HMMBUILD=./hmmer-3.3.2/src/hmmbuild
+KALIGN=./kalign-3.3.2/src/kalign
 #Dbs
 DATADIR=$10
 UNIREF90=$DATADIR/uniref90/uniref90.fasta
