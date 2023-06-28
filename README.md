@@ -18,6 +18,10 @@ The AlphaFold2 parameters are made available under the terms of the [CC BY 4.0 l
 
 <img src="./6nnw.gif"/>
 
+- The final prediction has an MMscore of 0.96 compared to 0.44 using AF-multimer
+
+<img src="./6nnw.svg"/>
+
 # Setup
 
 ## Get the AlphaFold-multimer parameters
