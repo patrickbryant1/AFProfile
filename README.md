@@ -29,6 +29,7 @@ rm alphafold_params_2022-03-02.tar
 
 ## Install the AlphaFold requirements
 - We install the genetic search programs from source. This will make the searches faster.
+
 *hh-suite*
 ```
 cd src
