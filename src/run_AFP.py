@@ -161,9 +161,6 @@ def predict_structure(
   output_dir = os.path.join(output_dir_base, fasta_name)
   if not os.path.exists(output_dir):
     os.makedirs(output_dir)
-  msa_output_dir = os.path.join(output_dir, 'msas')
-  if not os.path.exists(msa_output_dir):
-    os.makedirs(msa_output_dir)
 
   # Load out features from a pickled dictionary.
   features_output_path = os.path.join(output_dir, 'features.pkl')
@@ -270,12 +267,9 @@ def predict_structure(
         plddt_b_factors = np.repeat(plddt_per_pos[:, None], residue_constants.atom_type_num, axis=-1)
         unrelaxed_protein = protein.from_prediction(features=processed_feature_dict, result=aux,  b_factors=plddt_b_factors, remove_leading_feature_dimension=not model_runner.multimer_mode)
         unrelaxed_pdb = protein.to_pdb(unrelaxed_protein)
-        unrelaxed_pdb_path = os.path.join(output_dir+'/'+'lr_'+str(learning_rate)+'_nr_'+str(num_recycles)+'/', 'unrelaxed_'+str(i+1)+'.pdb')
+        unrelaxed_pdb_path = os.path.join(output_dir+'/', 'unrelaxed_'+str(i+1)+'.pdb')
         with open(unrelaxed_pdb_path, 'w') as f:
             f.write(unrelaxed_pdb)
-
-        #Set the prev for the next iter = self-conditioning
-        #processed_feature_dict['prev'] = aux['prev']
 
 
 

@@ -5,27 +5,22 @@
 # This script assumes that all python packages necessary are in the current path.
 
 #Get ID
-ID=H1144
-FASTA_PATHS=../../data/casp_15/H1144/H1144.fasta
-PARAMDIR=../../data/ #If v2 is used: Change the _v3 to _v2 in the multimer MODEL_PRESETS in config.py
-OUTDIR=../../data/casp15/
+ID=H1141
+FASTA_PATHS=../data/H1141/H1141.fasta
+PARAMDIR=../data/ #If v2 is used: Change the _v3 to _v2 in the multimer MODEL_PRESETS in config.py
+OUTDIR=../data/
 AFDIR=./
 
-#1. Get MSAs: run_alphafold_msa_template_only.py - this produces the feats as well (saved as pickle)
-#2. Get features from MSAs: run_alphafold_feats_from_msa.py
-#python3 $AFDIR/run_alphafold_feats_from_msa.py	--fasta_paths=$FASTA_PATHS \
-#--output_dir $OUTDIR
+#1. Get MSAs: run generate_msas.sh which runs: run_alphafold_msa_template_only.py - this produces the feats as well (saved as pickle)
+#For this test case - the features have already been generated and are available here: ../data/H1141/features.pkl
 
-#3. Learn residuals to improve the confidence: run_AFP.py
-
+#2. Learn residuals to improve the confidence: run_AFP.py
 #Run AFM
 MODEL_PRESET='multimer'
-NUM_RECYCLES=0
-CONFIDENCE_T=0.99
-MAX_ITER=500
-LR=0.0001
-
-mkdir $OUTDIR/$ID'/lr_'$LR'_nr_'$NUM_RECYCLES
+NUM_RECYCLES=10 #Number of recycles
+CONFIDENCE_T=0.95 #At what confidence to stop the search
+MAX_ITER=500 #Max number of iterations
+LR=0.0001 #Learning rate for ADAM optimizer
 
 #Run
 python3 $AFDIR/run_AFP.py --fasta_paths=$FASTA_PATHS \
