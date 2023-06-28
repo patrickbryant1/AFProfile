@@ -13,6 +13,9 @@ The AlphaFold2 parameters are made available under the terms of the [CC BY 4.0 l
 \
 **You may not use these files except in compliance with the licenses.**
 
+## Optimisation for 6nnw
+- Here is an example trajectory for PDBID 6nnw sorted by confidence.
+
 <img src="./6nnw.gif"/>
 
 # Setup
