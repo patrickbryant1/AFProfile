@@ -1,5 +1,8 @@
 # AFProfile
-Improved protein complex prediction with AlphaFold-multimer by denoising the MSA profile
+Improved protein complex prediction with AlphaFold-multimer by denoising the MSA profile.
+\
+AFProfile manipulates the MSA representation by learning residuals to the MSA profile that are more useful for the network.
+This is analogous to a denoising diffusion process over the MSA and proves to be a highly efficient process resulting in better structures.
 
 \
 <img src="./AFP.svg"/>
