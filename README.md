@@ -1,8 +1,10 @@
 # AFProfile
 Improved protein complex prediction with AlphaFold-multimer by denoising the MSA profile.
 \
-AFProfile manipulates the MSA representation by learning residuals to the MSA profile that are more useful for the network.
-This is analogous to a denoising process over the MSA and proves to be a highly efficient process resulting in more accurate structures.
+AFProfile manipulates the *MSA representation* by learning residuals to the MSA profile that are *more useful for the network*.
+This is analogous to a denoising process over the MSA and proves to be a highly efficient process resulting in *more accurate structures*.
+The process can be seen as denoising the MSA representation, similar to how a *blurry image would be sharpened*.
+
 
 \
 <img src="./AFP.svg"/>
@@ -21,6 +23,10 @@ The AlphaFold2 parameters are made available under the terms of the [CC BY 4.0 l
 - The final prediction has an MMscore of 0.96 compared to 0.44 using AF-multimer. The [native structure](https://www.rcsb.org/structure/6NNW) is in grey.
 
 <img src="./6nnw.svg"/>
+
+The confidence used to denoise the MSA is defined as: \
+Confidence = 0.8 iptm + 0.2 ptm \
+Where iptm is the predicted TM-score in the interface and ptm that of the entire complex.
 
 # Setup
 
