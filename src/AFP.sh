@@ -17,7 +17,7 @@ AFDIR=./
 #2. Learn residuals to improve the confidence: run_AFP.py
 #Run AFM
 MODEL_PRESET='multimer'
-NUM_RECYCLES=10 #Number of recycles
+NUM_RECYCLES=20 #Number of recycles
 CONFIDENCE_T=0.95 #At what confidence to stop the search
 MAX_ITER=500 #Max number of iterations
 LR=0.0001 #Learning rate for ADAM optimizer
