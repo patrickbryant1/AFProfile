@@ -62,7 +62,7 @@ pip install optax==0.1.4
 ```
 
 ## Try the test case
-Now when you have installed the required packages - you can run a test case on CASP15 target H1141
+Now when you have installed the required packages - you can run a test case on CASP15 target H1144
 ```
 cd src
 bash AFP.sh
