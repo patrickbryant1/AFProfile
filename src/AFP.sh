@@ -5,8 +5,8 @@
 # This script assumes that all python packages necessary are in the current path.
 
 #Get ID
-ID=H1141
-FASTA_PATHS=../data/H1141/H1141.fasta
+ID=H1144
+FASTA_PATHS=../data/H1144/H1144.fasta
 PARAMDIR=../data/ #If v2 is used: Change the _v3 to _v2 in the multimer MODEL_PRESETS in config.py
 OUTDIR=../data/
 AFDIR=./
