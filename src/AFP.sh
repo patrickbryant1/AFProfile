@@ -1,8 +1,9 @@
 
 # Script for predicting with AlphaFold-multimer using directed sampling (=dropout, This is the procedure implemented by Wallner in CASP15: https://www.biorxiv.org/content/10.1101/2022.12.20.521205v3)
-# using a diffusion process over the profile
+# using a denoising process over the profile. The MSA is denoised by doing gradient descent through AlphaFold-multimer.
 # Fill in all the variables below to run the predictions.
 # This script assumes that all python packages necessary are in the current path.
+#The fasta conventions are the same as for AlphaFold-multimer. See the example files in ../data/
 
 #Get ID
 ID=T1123
@@ -12,7 +13,7 @@ OUTDIR=../data/
 AFDIR=./
 
 #1. Get MSAs: run generate_msas.sh which runs: run_alphafold_msa_template_only.py - this produces the feats as well (saved as pickle)
-#For this test case - the features have already been generated and are available here: ../data/H1141/features.pkl
+#For this test case - the features have already been generated and are available here: ../data/T1123/features.pkl
 
 #2. Learn residuals to improve the confidence: run_AFP.py
 #Run AFM
