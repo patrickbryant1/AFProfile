@@ -34,8 +34,8 @@ Where iptm is the predicted TM-score in the interface and ptm that of the entire
 ```
 mkdir data/params
 wget https://storage.googleapis.com/alphafold/alphafold_params_2022-03-02.tar
-tar -xf alphafold_params_2022-03-02.tar
-mv params_model_1.npz data/params
+tar -xvf alphafold_params_2022-03-02.tar
+mv params_model_1_multimer_v2.npz data/params/
 rm *.npz
 rm alphafold_params_2022-03-02.tar
 ```
