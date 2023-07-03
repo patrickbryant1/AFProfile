@@ -1,9 +1,9 @@
 # AFProfile
 Improved protein complex prediction with AlphaFold-multimer by denoising the MSA profile.
 \
-AFProfile manipulates the *MSA representation* by learning residuals to the MSA profile that are *more useful for the network*.
-This is analogous to a denoising process over the MSA and proves to be a highly efficient process resulting in *more accurate structures*.
-The process can be seen as denoising the MSA representation, similar to how a *blurry image would be sharpened*.
+AFProfile learns a bias to the MSA representation that **improves the predictions** by performing **gradient descent through the AlphaFold-multimer network**. \
+We effectively denoise the MSA profile, similar to how a blurry image would be sharpened to become more clear. \
+This proves to be a highly efficient process, resulting in a 60-fold speedup compared to AFsample and as efficient as AFM v2.3.
 
 
 \
