@@ -223,9 +223,8 @@ def predict_structure(
         prediction_result = model_runner.predict(msa_params, processed_feature_dict) #The params for model runner are contained within self
         #Get confidence
         confidence = get_confidence_metrics(prediction_result)
-        #Get clashes
-        clash_fraction = get_clashes(prediction_result)
-        loss = (1/confidence['ranking_confidence'])*(1+clash_fraction)
+        #Get loss (1/confidence)
+        loss = 1/confidence['ranking_confidence']
         return loss, prediction_result
 
     def update(msa_params, opt_state, processed_feature_dict):
