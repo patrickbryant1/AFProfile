@@ -27,7 +27,7 @@ The AlphaFold2 parameters are made available under the terms of the [CC BY 4.0 l
 
 The confidence used to denoise the MSA is defined as: \
 Confidence = 0.8 iptm + 0.2 ptm \
-Where iptm is the predicted TM-score in the interface and ptm that of the entire complex.
+Where iptm is the predicted [TM-score](https://zhanggroup.org/TM-score/) in the interface and ptm that of the entire complex.
 
 # Setup
 
