@@ -96,7 +96,7 @@ cd src
 wget http://eddylab.org/software/hmmer/hmmer.tar.gz
 tar -xvzf hmmer.tar.gz
 rm hmmer.tar.gz
-cd hmmer-3.3.2
+cd hmmer-*
 ./configure
 make
 cd ..
