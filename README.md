@@ -38,6 +38,7 @@ git clone https://github.com/patrickbryant1/AFProfile.git
 
 ## Get the AlphaFold-multimer parameters
 ```
+cd AFProfile
 mkdir data/params
 wget https://storage.googleapis.com/alphafold/alphafold_params_2022-03-02.tar
 tar -xvf alphafold_params_2022-03-02.tar
