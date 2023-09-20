@@ -31,6 +31,10 @@ Where iptm is the predicted [TM-score](https://zhanggroup.org/TM-score/) in the 
 
 # Setup
 
+## Clone this repository
+```git clone https://github.com/patrickbryant1/AFProfile.git
+```
+
 ## Get the AlphaFold-multimer parameters
 ```
 mkdir data/params
