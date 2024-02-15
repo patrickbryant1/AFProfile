@@ -145,7 +145,8 @@ rm uniprot_sprot.fasta
 
 *PDB SEQRES: 0.2 GB*
 ```
-wget https://ftp.wwpdb.org/pub/pdb/derived_data/pdb_seqres.txt
+wget https://files.rcsb.org/pub/pdb/derived_data/pdb_seqres.txt.gz
+gunzip pdb_seqres.txt.gz
 mkdir pdb_seqres
 mv pdb_seqres.txt  pdb_seqres/
 ```
