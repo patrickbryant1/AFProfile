@@ -156,7 +156,7 @@ mv pdb_seqres.txt  pdb_seqres/
 wget https://storage.googleapis.com/alphafold-databases/v2.3/mgy_clusters_2022_05.fa.gz
 gunzip mgy_clusters_2022_05.fa.gz
 mkdir mgnify
-mv mgy_clusters_2022_05.fa.gz mgnify/
+mv mgy_clusters_2022_05.fa mgnify/
 rm mgy_clusters_2022_05.fa.gz
 ```
 
