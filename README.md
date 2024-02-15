@@ -49,23 +49,12 @@ rm alphafold_params_2022-03-02.tar
 
 ## Install the AlphaFold requirements
 
-- For the python environment, we recommend to install it with pip as described below. You can do this in your virtual environment of choice.
-- Otherwise, you can follow the installation with docker here: https://github.com/deepmind/alphafold/tree/main
+Install all packages into a conda environment (requires https://docs.conda.io/en/latest/miniconda.html)
 ```
-pip install -U jaxlib==0.3.24+cuda11.cudnn82 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-pip install jax==0.3.24
-pip install ml-collections==0.1.1
-pip install dm-haiku==0.0.9
-pip install pandas==1.3.5
-pip install biopython==1.81
-pip install chex==0.1.5
-pip install dm-tree==0.1.8
-pip install immutabledict==2.0.0
-pip install numpy==1.21.6
-pip install scipy==1.7.3
-pip install tensorflow-cpu==2.12.0
-pip install tensorflow==2.11.0
-pip install optax==0.1.4
+conda env create -f afprofile.yml
+wait
+conda activate afprofile
+pip install --upgrade "jax[cuda12_local]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 ```
 
 ## Try the test case
@@ -83,10 +72,10 @@ bash AFP.sh
 *hh-suite*
 ```
 cd src
-git clone https://github.com/soedinglab/hh-suite.git
-mkdir -p hh-suite/build && cd hh-suite/build
-cmake -DCMAKE_INSTALL_PREFIX=. ..
-make -j 4 && make install
+mkdir hh-suite
+cd hh-suite
+wget https://github.com/soedinglab/hh-suite/releases/download/v3.3.0/hhsuite-3.3.0-SSE2-Linux.tar.gz
+tar xvfz hhsuite-3.3.0-SSE2-Linux.tar.gz
 cd ..
 ```
 
