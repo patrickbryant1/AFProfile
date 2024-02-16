@@ -181,12 +181,11 @@ def predict_structure(
     #'all_atom_positions', 'assembly_num_chains', 'entity_mask', 'cluster_bias_mask',
     #'bert_mask', 'seq_mask', 'msa_mask'
 
-    #Missing 'num_templates', 'template_aatype', 'template_all_atom_mask', 'template_all_atom_positions'
-    if 'num_templates' not in [*processed_feature_dict.keys()]:
-      processed_feature_dict['num_templates'] = jnp.array(4, dtype='int32')
-      processed_feature_dict['template_aatype'] = jnp.zeros((4, processed_feature_dict['seq_length']), dtype='int32')
-      processed_feature_dict['template_all_atom_mask'] = jnp.zeros((4, processed_feature_dict['seq_length'], 37), dtype='int32') #Zeros here makes sure the rest doesn't matter
-      processed_feature_dict['template_all_atom_positions'] = jnp.zeros((4, processed_feature_dict['seq_length'], 37, 3), dtype='float32')
+    #Add zero feats for 'num_templates', 'template_aatype', 'template_all_atom_mask', 'template_all_atom_positions'
+    processed_feature_dict['num_templates'] = jnp.array(4, dtype='int32')
+    processed_feature_dict['template_aatype'] = jnp.zeros((4, processed_feature_dict['seq_length']), dtype='int32')
+    processed_feature_dict['template_all_atom_mask'] = jnp.zeros((4, processed_feature_dict['seq_length'], 37), dtype='int32') #Zeros here makes sure the rest doesn't matter
+    processed_feature_dict['template_all_atom_positions'] = jnp.zeros((4, processed_feature_dict['seq_length'], 37, 3), dtype='float32')
 
     #Get the MSA shape
     msa_shape = processed_feature_dict['msa'].shape
