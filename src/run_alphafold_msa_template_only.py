@@ -118,7 +118,7 @@ flags.DEFINE_boolean('use_precomputed_msas', False, 'Whether to read MSAs that '
 
 FLAGS = flags.FLAGS
 
-MAX_TEMPLATE_HITS = 20
+MAX_TEMPLATE_HITS = 0
 
 def _check_flag(flag_name: str,
                 other_flag_name: str,

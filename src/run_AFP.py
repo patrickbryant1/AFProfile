@@ -66,7 +66,7 @@ flags.DEFINE_list(
 flags.DEFINE_string('data_dir', None, 'Path to directory of supporting data.')
 flags.DEFINE_string('output_dir', None, 'Path to a directory that will '
                     'store the results.')
-
+flags.DEFINE_string('feature_dir', None, 'Path to a directory that contains the feats.')
 flags.DEFINE_enum('model_preset', 'monomer',
                   ['monomer', 'monomer_casp14', 'monomer_ptm', 'multimer'],
                   'Choose preset model configuration - the monomer model, '
@@ -148,6 +148,7 @@ def predict_structure(
     fasta_path: str,
     fasta_name: str,
     output_dir_base: str,
+    feature_dir: str,
     model_runners: Dict[str, model.RunModel],
     random_seed: int,
     confidence_threshold: float,
@@ -163,7 +164,7 @@ def predict_structure(
     os.makedirs(output_dir)
 
   # Load out features from a pickled dictionary.
-  features_output_path = os.path.join(output_dir, 'features.pkl')
+  features_output_path = os.path.join(feature_dir, 'features.pkl')
   feature_dict = np.load(features_output_path, allow_pickle=True)
   # Run the models.
   num_models = len(model_runners.keys())
@@ -320,6 +321,7 @@ def main(argv):
         fasta_path=fasta_path,
         fasta_name=fasta_name,
         output_dir_base=FLAGS.output_dir,
+        feature_dir=FLAGS.feature_dir,
         model_runners=model_runners,
         random_seed=random_seed,
         confidence_threshold=FLAGS.confidence_threshold,
