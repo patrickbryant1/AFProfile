@@ -30,4 +30,5 @@ python3 $AFDIR/run_AFP.py --fasta_paths=$FASTA_PATHS \
 --confidence_threshold=$CONFIDENCE_T \
 --max_iter=$MAX_ITER \
 --learning_rate=$LR \
+--feature_dir=$OUTDIR/$ID/ \ 
 --output_dir=$OUTDIR
