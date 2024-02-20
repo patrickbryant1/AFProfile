@@ -169,7 +169,6 @@ def predict_structure(
   # Run the models.
   num_models = len(model_runners.keys())
 
-
   #Loop through all model runners
   for model_index, (model_name, model_runner) in enumerate(model_runners.items()):
     #Process feats
@@ -183,10 +182,11 @@ def predict_structure(
     #'bert_mask', 'seq_mask', 'msa_mask'
 
     #Add zero feats for 'num_templates', 'template_aatype', 'template_all_atom_mask', 'template_all_atom_positions'
-    processed_feature_dict['num_templates'] = jnp.array(4, dtype='int32')
-    processed_feature_dict['template_aatype'] = jnp.zeros((4, processed_feature_dict['seq_length']), dtype='int32')
-    processed_feature_dict['template_all_atom_mask'] = jnp.zeros((4, processed_feature_dict['seq_length'], 37), dtype='int32') #Zeros here makes sure the rest doesn't matter
-    processed_feature_dict['template_all_atom_positions'] = jnp.zeros((4, processed_feature_dict['seq_length'], 37, 3), dtype='float32')
+    if 'num_templates' not in [*processed_feature_dict.keys()]:
+      processed_feature_dict['num_templates'] = jnp.array(4, dtype='int32')
+      processed_feature_dict['template_aatype'] = jnp.zeros((4, processed_feature_dict['seq_length']), dtype='int32')
+      processed_feature_dict['template_all_atom_mask'] = jnp.zeros((4, processed_feature_dict['seq_length'], 37), dtype='int32') #Zeros here makes sure the rest doesn't matter
+      processed_feature_dict['template_all_atom_positions'] = jnp.zeros((4, processed_feature_dict['seq_length'], 37, 3), dtype='float32')
 
     #Get the MSA shape
     msa_shape = processed_feature_dict['msa'].shape
@@ -209,7 +209,7 @@ def predict_structure(
     """
 
     #Need to init zeros = no influence on the cluster profile
-    msa_params = np.zeros((config.model.embeddings_and_evoformer.num_msa, msa_shape[1], 23)) #23 classes for aa, gap, mask
+    msa_params = jnp.zeros((config.model.embeddings_and_evoformer.num_msa, msa_shape[1], 23), dtype='float32') #23 classes for aa, gap, mask
     optimizer = optax.adam(learning_rate)
     opt_state = optimizer.init(msa_params)
 
@@ -269,7 +269,6 @@ def predict_structure(
         unrelaxed_pdb_path = os.path.join(output_dir+'/', 'unrelaxed_'+str(i+1)+'.pdb')
         with open(unrelaxed_pdb_path, 'w') as f:
             f.write(unrelaxed_pdb)
-
 
 
 
