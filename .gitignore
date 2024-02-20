@@ -6,4 +6,6 @@ src/alphafold/data/__pycache__
 src/alphafold/common/__pycache__
 src/alphafold/__pycache__/
 data/params
+data/T1123/*.pdb
+data/T1123/metrics_0.0001_20.csv
 .DS_Store
