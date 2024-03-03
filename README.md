@@ -55,6 +55,7 @@ conda env create -f afprofile.yml
 wait
 conda activate afprofile
 pip install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+pip install --upgrade numpy
 ```
 
 ## Try the test case
