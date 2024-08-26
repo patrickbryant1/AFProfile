@@ -57,6 +57,7 @@ conda activate afprofile
 pip install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 pip install --upgrade numpy
 ```
+If the conda doesn't work for you - see "pip_pkgs.txt"
 
 ## Try the test case
 Now when you have installed the required packages - you can run a test case on CASP15 target T1123o
